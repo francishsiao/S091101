@@ -1,6 +1,7 @@
 package com.example.student.s091101;
 
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
@@ -13,6 +14,7 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.maps.model.PolylineOptions;
 
 import static android.Manifest.permission.*;
 import static android.Manifest.*;
@@ -66,12 +68,23 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         // Add a marker in Sydney and move the camera
         LatLng taipei = new LatLng(25.0162, 121.533);
         mMap.addMarker(new MarkerOptions().position(taipei).title("Marker in Taipei"));
+
         //新增位置標示
         MarkerOptions mo1 = new MarkerOptions().position(new LatLng(25.234, 121.5)).title("Test"); //Simple factory pattern
         MarkerOptions mo2 = new MarkerOptions().position(new LatLng(25.034, 121.8)).title("222");
-
         mMap.addMarker(mo1);
         mMap.addMarker(mo2);
+
+        //畫直線
+        LatLng p1 = new LatLng(25.0, 121.533);
+        LatLng p2 = new LatLng(25.3, 121.533);
+        PolylineOptions options = new PolylineOptions();
+        options.add(p1, p2);
+        options.width(5);
+        options.color(Color.MAGENTA);
+        options.zIndex(1); // 疊層 id( 數字越高圖層越上層 )
+        mMap.addPolyline(options);
+
 
         CameraUpdate update = CameraUpdateFactory.newLatLngZoom(taipei, 17);
         //mMap.moveCamera(update);
