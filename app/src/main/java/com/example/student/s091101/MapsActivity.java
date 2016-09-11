@@ -67,7 +67,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         LatLng taipei = new LatLng(25.0162, 121.533);
         mMap.addMarker(new MarkerOptions().position(taipei).title("Marker in Taipei"));
         CameraUpdate update = CameraUpdateFactory.newLatLngZoom(taipei, 17);
-        mMap.moveCamera(update);
+        //mMap.moveCamera(update);
+        mMap.animateCamera(update, 5000, null); //focus動畫效果
     }
 
     @Override
